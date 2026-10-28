@@ -1,0 +1,369 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Сузір'я обміну досвідом</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Caveat:wght@600;700&family=Nunito:wght@500;600;700;800;900&display=swap">
+<style>
+/* Layout: лише рукописний напис і карта; уся інформація — у картках, що відкриваються натисканням на острівці, стікери, фото. Тепла абрикосова «зошитова» тема, одна світла палітра свідомо */
+:root{
+  --sun-1:#FFF4D2; --sun-2:#FFDDB0; --grid:rgba(200,110,30,.10); --grid-b:rgba(200,110,30,.18);
+  --ink:#3A2142; --muted:#7A5A66; --card:#FFFCF5; --line:#F0D6B8;
+  --c-ed:#0C9483; --c-new:#4D7C0F; --c-gtp:#C27100; --c-amb:#E0503B; --c-osv:#7550E3; --c-por:#2A78CC;
+  --st-1:#FFFDF6; --st-2:#FFD7E2; --st-ink:#3A2142;
+  --core:#3A2142; --core-ink:#FFF4D2;
+  --hand:"Caveat","Segoe Print","Comic Sans MS",cursive;
+  --pen:"Marck Script","Caveat","Segoe Script",cursive;
+  --round:"Nunito",system-ui,-apple-system,"Segoe UI",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--sun-2)}
+body{min-height:100%;color:var(--ink);font-family:var(--round);font-size:16px;font-weight:600;line-height:1.5;
+  background:linear-gradient(var(--grid-b) 1px,transparent 1px) 0 0/100px 100px,linear-gradient(90deg,var(--grid-b) 1px,transparent 1px) 0 0/100px 100px,linear-gradient(var(--grid) 1px,transparent 1px) 0 0/20px 20px,linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/20px 20px,radial-gradient(900px 600px at 50% 40%,#FFF8E2 0%,transparent 70%),linear-gradient(160deg,var(--sun-1) 0%,var(--sun-2) 100%);
+}
+.wrap{max-width:1300px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px 24px}
+h2,h3,p{margin:0}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--c-amb);outline-offset:3px;border-radius:8px}
+
+.title-svg{display:block;width:min(860px,100%);height:auto;margin:0 auto;overflow:visible;cursor:pointer}
+.title-svg text{font-family:var(--pen);font-size:118px;fill:var(--ink)}
+.title-svg .ghost{fill:none;stroke:var(--line);stroke-width:1}
+.title-svg .swoosh{fill:none;stroke:var(--c-amb);stroke-width:4;stroke-linecap:round}
+.pen-body{fill:var(--c-osv)}.pen-nib{fill:var(--ink)}.pen-clip{fill:var(--c-gtp)}
+
+.map-scroll{overflow-x:auto;scrollbar-width:none}
+.map-scroll::-webkit-scrollbar{display:none}
+.map{display:block;width:100%;min-width:900px;height:auto;user-select:none}
+.map text{font-family:var(--round);fill:var(--ink)}
+.orbit-line{fill:none;stroke-width:2.4;stroke-dasharray:2 7;stroke-linecap:round;opacity:.8;animation:flowIn 2.4s linear infinite}
+.twig{fill:none;stroke-width:1.5;opacity:.75;stroke-dasharray:5 5;animation:flowOut 3s linear infinite}
+.bridge{fill:none;stroke-width:2;stroke-dasharray:1 6;stroke-linecap:round;opacity:.9}
+@keyframes flowIn{to{stroke-dashoffset:-18}}
+@keyframes flowOut{to{stroke-dashoffset:20}}
+.island{cursor:pointer}
+.island .blob{stroke-width:2;stroke-dasharray:7 6;transition:fill-opacity .3s}
+.island:hover .blob,.island:focus-visible .blob{fill-opacity:.42}
+.island .float{animation:bob 6s ease-in-out infinite}
+.island:nth-of-type(2) .float{animation-delay:-1.2s}.island:nth-of-type(3) .float{animation-delay:-2.4s}.island:nth-of-type(4) .float{animation-delay:-3.6s}.island:nth-of-type(5) .float{animation-delay:-4.8s}
+@keyframes bob{50%{transform:translateY(-5px)}}
+.isl-t{font-weight:900;font-size:19px}
+.isl-s{font-family:var(--hand);font-size:20px;font-weight:700}
+.sym circle{stroke:var(--card);stroke-width:3}
+.sym text{font-weight:900;font-size:17px;fill:#fff!important}
+.sat{cursor:pointer}
+.sat .ring{fill:none;stroke-width:3.5}
+.sat .frame{fill:var(--card)}
+.sat:hover .ring{stroke-width:6}
+.sat .cap{font-family:var(--hand);font-size:19px;font-weight:700}
+.pill rect{fill:var(--card);stroke-width:2}
+.pill text{font-size:13px;font-weight:800}
+.pill:hover rect{stroke-width:3.5}
+.sticker{cursor:pointer}
+.sticker rect.paper{filter:drop-shadow(0 6px 6px rgba(120,60,20,.22))}
+.sticker text{font-family:var(--hand);font-size:20px;font-weight:700;fill:var(--st-ink)}
+.sticker .tape{fill:rgba(255,200,120,.65)}
+.core{cursor:default}
+.core .nuc{fill:var(--core)}
+.core text{fill:var(--core-ink)!important}
+.core .orb{fill:none;stroke:var(--c-osv);stroke-width:1.6;opacity:.5}
+.core .spin{transform-box:fill-box;transform-origin:center;animation:spin 18s linear infinite}
+.core .spin.b{animation-duration:26s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+.doodle{font-family:var(--hand)!important;font-size:24px;font-weight:700;fill:var(--muted)!important;opacity:.4}
+
+/* картки-вікна */
+dialog{border:0;padding:0;border-radius:24px;background:var(--card);color:var(--ink);width:min(760px,calc(100vw - 24px));max-height:calc(100vh - 32px);overflow:auto;box-shadow:0 30px 60px -20px rgba(80,30,10,.55);border-top:8px solid var(--accent,var(--ink))}
+dialog.media-d{width:auto;max-width:min(980px,calc(100vw - 24px))}
+dialog::backdrop{background:rgba(70,30,20,.55)}
+.dl{display:grid;gap:12px;padding:16px clamp(14px,3vw,24px) 20px}
+.d-head{display:flex;align-items:flex-start;gap:14px}
+.d-sym{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-size:24px;font-weight:900;color:#fff;background:var(--accent,var(--ink));transform:rotate(-6deg)}
+.d-title{display:grid;gap:3px;min-width:0;flex:1}
+.d-title h2{font-size:clamp(21px,3vw,28px);font-weight:900;line-height:1.12;text-wrap:balance}
+.d-when{font-size:14px;font-weight:800;color:var(--muted);line-height:1.4}
+.d-law{font-family:var(--hand);font-size:22px;font-weight:700;line-height:1.1;color:var(--accent,var(--ink))}
+.x{flex:none;border:0;background:var(--ink);color:var(--card);width:38px;height:38px;border-radius:50%;font-size:20px;font-weight:900;cursor:pointer}
+.d-date{flex:none;display:grid;place-content:center;text-align:center;width:100px;white-space:nowrap;aspect-ratio:1;border-radius:20px;background:var(--accent,var(--ink));color:#fff;transform:rotate(-4deg);font-size:12px;font-weight:800}
+.d-date b{font-size:19px;font-weight:900;line-height:1.05;letter-spacing:-.02em}
+.d-title h2 em{font-family:var(--hand);font-style:normal;font-weight:700;font-size:1.2em;color:var(--accent,var(--ink))}
+.grow-lead{font-size:15.5px;font-weight:700;line-height:1.5}
+.growl{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.growl li{position:relative;padding:9px 12px 9px 34px;border-radius:12px;background:#EFE8FF;font-size:14.5px;line-height:1.45}
+.growl li:nth-child(2){background:#DDF4EF}.growl li:nth-child(3){background:#E0EEFC}.growl li:nth-child(4){background:#FFE2DC}
+.growl li::before{content:"★";position:absolute;left:12px;top:9px;color:var(--c-osv)}
+.growl a{color:var(--c-osv);font-weight:800}
+.newm{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:10px;counter-reset:n}
+.newm li{counter-increment:n;position:relative;padding:12px 14px 12px 54px;border-radius:16px;background:#FFF3DE}
+.newm li::before{content:counter(n);position:absolute;left:12px;top:12px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:900;color:#fff;background:var(--c-osv)}
+.newm li:nth-child(2)::before{background:var(--c-ed)}.newm li:nth-child(3)::before{background:var(--c-gtp)}.newm li:nth-child(4)::before{background:var(--c-amb)}
+.newm b{display:block;font-family:var(--hand);font-size:24px;font-weight:700;line-height:1.05}
+.newm p{font-size:14.5px;line-height:1.45}
+.btn.main{background:var(--accent,var(--ink));border-color:var(--accent,var(--ink));color:#fff}
+@media (max-width:620px){.growl,.newm{grid-template-columns:1fr}.d-date{width:66px}.d-date b{font-size:16px}}
+.more{display:grid;gap:10px;padding:14px 16px;border-radius:16px;background:#FFF3DE}
+.more h3{font-family:var(--hand);font-size:26px;font-weight:700;line-height:1.1;color:var(--accent,var(--ink))}
+.more p{font-size:15px;line-height:1.55}
+.hl{background:linear-gradient(transparent 55%,rgba(255,196,80,.55) 55%);padding:0 2px;border-radius:2px}
+.cycle{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.cycle li{padding:5px 12px;border-radius:999px;background:#FFFFFF;border:2px solid var(--line);font-family:var(--hand);font-size:19px;font-weight:700;line-height:1.1}
+.cycle li:not(:last-child)::after{content:"→";margin-left:10px;color:var(--accent,var(--ink));font-family:var(--round)}
+.more .cycle li{padding:5px 12px}
+.more .cycle li::before{content:none}
+.cycle li:last-child{background:var(--accent,var(--ink));border-color:var(--accent,var(--ink));color:#fff}
+.more ul.comp li::before{content:"●";font-size:10px;top:5px}
+.problem{font-size:15px;line-height:1.5;padding:10px 14px;border-radius:14px;border:2px dashed var(--accent,var(--ink));background:#FFFFFF}
+.problem b{font-family:var(--hand);font-size:22px;font-weight:700;color:var(--accent,var(--ink));margin-right:4px}
+.more .stage{font-size:12px;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
+.more ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.more li{position:relative;padding-left:20px;font-size:15px;line-height:1.5}
+.more li::before{content:"★";position:absolute;left:0;top:0;font-size:13px;color:var(--accent,var(--ink))}
+.branch{opacity:.92}
+.twig2{opacity:.75}
+.pol{cursor:pointer}
+.pol-paper{fill:#FFFFFF}
+.pol .tape{fill:rgba(255,196,110,.75)}
+.pol-cap{font-family:var(--hand)!important;font-size:21px;font-weight:700}
+.pol:hover .pol-paper,.pol:focus-visible .pol-paper{stroke:var(--ink);stroke-width:2}
+.tag{cursor:pointer}
+.tag-t{font-weight:900;font-size:20px;fill:#fff!important}
+.tag-s{font-family:var(--hand)!important;font-size:21px;font-weight:700;fill:#fff!important;opacity:.95}
+.tag-sym{font-weight:900;font-size:19px}
+.more-dot{fill:var(--ink)}
+.more-plus{fill:#fff!important;font-weight:900;font-size:18px}
+.tag:hover{filter:brightness(1.08)}
+.take{font-size:15.5px;line-height:1.5;padding:9px 14px;border-radius:14px;background:#EFE8FF}
+.take.t2{background:#FFF0C4}
+.take b{font-family:var(--hand);font-size:23px;font-weight:700;color:var(--c-osv);margin-right:4px}
+.take.t2 b{color:var(--c-gtp)}
+.chain{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.chain>li{position:relative;display:grid;gap:5px;align-content:start;padding:10px 12px 12px;border-radius:16px;background:#FFF3DE;border:2px dashed var(--line)}
+.chain>li:not(:last-child)::after{content:"→";position:absolute;right:-14px;top:12px;z-index:1;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:900;background:var(--accent,var(--ink));color:#fff}
+.chain h3{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:900;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.chain h3 i{font-style:normal;flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;background:var(--ink);color:var(--card);letter-spacing:0}
+.chain ul{list-style:none;margin:0;padding:0;display:grid;gap:5px}
+.chain ul li{position:relative;padding-left:14px;font-size:14px;line-height:1.4}
+.chain ul li::before{content:"";position:absolute;left:0;top:.5em;width:6px;height:6px;border-radius:50%;background:var(--accent,var(--ink))}
+.media{display:flex;flex-wrap:wrap;gap:12px}
+.mthumb{position:relative;width:104px;display:grid;gap:3px;justify-items:center;border:0;background:none;padding:0;cursor:pointer;text-align:center}
+.mthumb img{width:104px;height:104px;object-fit:cover;border-radius:50%;border:4px solid var(--card);box-shadow:0 0 0 3px var(--accent,var(--ink)),0 10px 18px -12px rgba(80,30,10,.6);transition:transform .25s}
+.mthumb.cert img{border-radius:12px;transform:rotate(-3deg)}
+.mthumb:hover img{transform:scale(1.05) rotate(0)}
+.mthumb span{font-family:var(--hand);font-size:18px;font-weight:700;line-height:1.05}
+.mthumb .pl{position:absolute;top:70px;right:4px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--c-amb);color:#fff;font-size:12px;font-style:normal}
+.btns{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;text-decoration:none;font-size:13.5px;font-weight:800;background:#FFF3DE;border:2px solid var(--line);cursor:pointer;transition:transform .2s,border-color .2s}
+.btn:hover{transform:translateY(-2px);border-color:var(--accent,var(--ink))}
+.btn svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:2.4}
+.lb-media{display:grid;place-items:center;background:#FFF3DE;border-radius:14px;overflow:hidden}
+.lb-media img,.lb-media video{display:block;max-width:100%;max-height:calc(100vh - 200px);width:auto;height:auto}
+.lb-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.lb-cap{font-family:var(--hand);font-size:23px;font-weight:700;line-height:1.1;min-width:0;flex:1 1 240px}
+@media (max-width:700px){.chain{grid-template-columns:1fr 1fr}.chain>li:nth-child(2)::after{display:none}}
+@media (max-width:440px){.chain{grid-template-columns:1fr}.chain>li::after{display:none}.mthumb,.mthumb img{width:88px}.mthumb img{height:88px}.mthumb .pl{top:56px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <svg class="title-svg" id="titleSvg" viewBox="0 0 1000 175" role="img" aria-label="Обмін досвідом">
+    <defs><clipPath id="reveal"><rect id="revRect" x="0" y="0" width="0" height="175"/></clipPath></defs>
+    <text class="ghost" x="500" y="122" text-anchor="middle">Обмін досвідом</text>
+    <text id="inkText" x="500" y="122" text-anchor="middle" clip-path="url(#reveal)">Обмін досвідом</text>
+    <path id="swoosh" class="swoosh" d="M190 154 C 380 134, 620 172, 820 144"/>
+    <g id="pen" transform="translate(-200,-200)"><g transform="rotate(35)">
+      <path class="pen-nib" d="M0 0 L-6 -22 L6 -22 Z"/>
+      <rect class="pen-body" x="-8" y="-92" width="16" height="72" rx="6"/>
+      <rect class="pen-clip" x="5" y="-86" width="4" height="34" rx="2"/>
+    </g></g>
+  </svg>
+  <div class="map-scroll" id="mapScroll"><svg class="map" id="map" viewBox="0 -170 1400 1270" aria-label="Ментальна карта: Вищетарасівський ліцей і чотири напрями обміну досвідом"></svg></div>
+</div>
+
+<dialog id="dlg" aria-label="Деталі"><div class="dl" id="dlgBody"></div></dialog>
+
+<script>
+(function(){
+var PS='https://raw.githubusercontent.com/a64151368-dot/Prof-spilnota/main/';
+var OD='https://github.com/a64151368-dot/Obmin-dosvid/blob/main/';
+var ARROW='<svg viewBox="0 0 16 16"><path d="M5 11 11 5M6 5h5v5"/></svg>';
+var STEPS=['професійні контакти','нові знання','мої педагогічні рішення','середовище ліцею'];
+
+/* медіа: підписи короткі, як у зразку */
+var M={
+ v_ed:{lbl:'відео EdCamp',video:'a/v_edcamp.mp4',img:'a/poster_edcamp.jpg',cap:'Міні-EdCamp Dnipro «Сильніші разом» · відео з міні-EdCamp'},
+ e_org:{lbl:'команда EdCamp',img:'a/ed_org.jpg',cap:'Міні-EdCamp Dnipro «Сильніші разом» · команда EdCamp',pos:'50% 40%'},
+ e_robo:{lbl:'робототехніка',img:'a/ed_robo.jpg',cap:'Міні-EdCamp Dnipro · робототехніка'},
+ e_ekskurs:{lbl:'УМСФ, Дніпро',img:'a/ed_ekskurs.jpg',cap:'Міні-EdCamp Dnipro · Університет митної справи та фінансів, Дніпро'},
+ e_robot:{lbl:'робот',img:'a/ed_robot.jpg',cap:'Міні-EdCamp Dnipro · робот'},
+ e_sertse:{lbl:'«Україною в серці!»',img:'a/ed_sertse.jpg',cap:'Міні-EdCamp Dnipro · «Україною в серці!»',pos:'50% 55%'},
+ sila:{lbl:'«Сила спільноти»',img:'a/sila.jpg',cap:'Міні-EdCamp Dnipro · «Сила спільноти»',pos:'50% 35%'},
+ cover:{lbl:'сильніші разом',img:'a/cover.jpg',cap:'Міні-EdCamp Dnipro «Сильніші разом» · 03.05.2025'},
+ ank:{lbl:'за анкетами',img:'a/gtp_ankety.jpg',cap:'Global Teacher Prize Ukraine · за анкетами',pos:'50% 70%'},
+ g_sup:{lbl:'СУПівська спільнота',img:'a/gtp_sup.jpg',cap:'Global Teacher Prize Ukraine · СУПівська спільнота'},
+ g_ekran:{lbl:'біля екрана премії',img:'a/gtp_ekran.jpg',cap:'Global Teacher Prize Ukraine · Дніпро, 18.07.2025',pos:'50% 30%'},
+ g_razom:{lbl:'усі разом',img:'a/gtp_razom.jpg',cap:'Global Teacher Prize Ukraine · команда регіонального осередку'},
+ g_robota:{lbl:'читаємо анкети',img:'a/gtp_robota.jpg',cap:'Global Teacher Prize Ukraine · читаємо анкети',pos:'50% 60%'},
+ g_stil:{lbl:'за роботою',img:'a/gtp_stil.jpg',cap:'Global Teacher Prize Ukraine · за роботою',pos:'50% 70%'},
+ pod:{lbl:'подяка',cert:1,img:'a/gtp_podyaka.jpg',cap:'Global Teacher Prize Ukraine 2025 · подяка'},
+ meet:{lbl:'зустріч 29.05',img:'a/amb_meet.jpg',cap:'«Освічена ініціатива» · зустріч 29.05.2025',pos:'70% 50%'},
+ unicef:{lbl:'сертифікат PSEA',cert:1,img:'a/cert_unicef.jpg',cap:'Сертифікат ЮНІСЕФ (PSEA) · 23.05.2025'},
+ zroz:{lbl:'«Зрозуміло!»',cert:1,img:'a/cert_zrozumilo.jpg',cap:'Сертифікат «Зрозуміло!» · 27.05.2025'},
+ p_kan:{lbl:'канал групи',img:'a/poruch_kanal.jpg',cap:'«Поруч» · канал групи',pos:'50% 30%'},
+ p_met:{lbl:'метафора',img:'a/poruch_metafora.jpg',cap:'«Поруч» · метафора',pos:'50% 60%'},
+ p_gr:{lbl:'зустріч 30.01',img:'a/poruch_grupa.jpg',cap:'«Поруч» · зустріч 30.01.2025',pos:'40% 40%'},
+ p_1:{lbl:'перша зустріч',img:'a/poruch_persha.jpg',cap:'«Поруч» · перша зустріч 20.01.2025',pos:'60% 20%'}
+};
+
+/* п'ять гілок; тексти EdCamp і GTP — дослівно зі зразка */
+var I=[
+ {id:'edcamp',angle:-135,color:'--c-ed',t:['Міні-EdCamp','Dnipro'],sub:'«Сильніші разом»',sym:'Σ',
+  date:['03.05','2025'],titleA:'Міні-EdCamp Dnipro ',titleB:'«Сильніші разом»',
+  info:'Науковий ліцей міжнародних відносин УМСФ · 9 годин, 0,3 ЄКТС · сертифікат ГО «ЕдКемп Україна»',
+  took:'формат «рівний-рівному» і моделі партнерства педагогів, батьків та учнів.',
+  more:'<div class="more"><h3>Що я тепер роблю на уроках</h3><p class="stage">На початку теми</p><ul><li><b>Ціль мовою дитини.</b> Разом пишемо одне речення «Я зможу…». Наприкінці теми кожен сам перевіряє, чи вийшло.</li><li><b>Запитання до себе.</b> Перед складною задачею учень відповідає собі: що я вже знаю, що мені незрозуміло, яка допомога потрібна.</li></ul><p class="stage">На уроці</p><ul><li><b>Учень пояснює учневі.</b> Навчаємося онлайн у Zoom. Залежно від мети об’єдную учнів у групи по 2, 3 або 4: той, хто розібрався першим, пояснює іншим. Я координую і бачу, де пояснення ламається. Кому потрібна допомога, консультую в Zoom наодинці.</li><li><b>Спершу прогноз, потім дослід.</b> На фізиці учні передбачають результат досліду й пояснюють чому, а потім порівнюють прогноз зі спостереженням.</li><li><b>Одне явище, три пояснення.</b> З допомогою ШІ готую пояснення через побутову ситуацію, схему або дослід і завдання різного рівня.</li><li><b>Запитання про ШІ від учнів.</b> Зібрали запитання класу про штучний інтелект і розбираємо їх на прикладах із фізики та математики.</li><li><b>Задачі без стереотипів.</b> Переглядаю сюжети задач, щоб інженерами й дослідниками в них були і дівчата, і хлопці.</li></ul><p class="stage">Після теми</p><ul><li><b>Маленькі кроки.</b> За ідеєю Kaizen розбираємо не саму помилку, а її причину, і записуємо один наступний крок.</li><li><b>Карта теми.</b> Учень позначає: розумію, можу з підказкою, треба повторити. За цими позначками планую, що надолужувати.</li><li><b>Урок, який переживе відключення.</b> Кожне заняття має короткий запис і завдання з терміном до кінця тижня. Учень без світла не втрачає тему.</li></ul></div>',
+  sats:[{p:'ГО «ЕдКемп Україна»'},{m:'v_ed'},{m:'sila'},{m:'cover'}]},
+ {id:'gtp',angle:-45,color:'--c-gtp',t:['Global Teacher','Prize Ukraine'],sub:'асесорка премії',sym:'Δ',
+  date:['липень','2025'],titleA:'Асесорка ',titleB:'Global Teacher Prize Ukraine',
+  info:'Дніпро · регіональний осередок · незалежний відбір педагогів з усієї України · подяка від премії',
+  took:'сильну практику видно за тим, що змінилося для учнів.',
+  changed:'тепер я обираю не методику, а те, що допоможе <span class="hl">конкретній дитині</span> просуватися в математиці й фізиці та надолужувати пропущене.',
+  more:'<div class="more"><h3>Що збагатило мій досвід</h3><p>Один день я читала анкети вчителів з усієї України. Одні описували гарні ідеї. Інші показували, <b>що змінилося для їхніх учнів</b>, і саме такі анкети запам’ятовувалися.</p><p class="stage">Як я працюю з чужим досвідом</p><p>У кожного вчителя свій досвід, тому одну й ту саму ідею кожен бачить по-своєму. Колеги діляться тим, що спрацювало в них, а я <b>беру те, що потрібно саме моїм учням</b>. Пробую на уроці. Якщо не виходить, змінюю. Так поступово народжується <span class="hl">мій власний підхід до навчання</span>.</p><ol class="cycle"><li>почула</li><li>осмислила</li><li>спробувала</li><li>змінила</li><li>мій підхід</li></ol><p class="stage">Як це виглядає на моїх уроках</p><ul><li><b>Формувальне оцінювання щодня.</b> Короткі перевірки на кожному уроці показують, хто де застряг, ще до контрольної. Діти <span class="hl">бачать свій прогрес одразу</span>, а не наприкінці семестру.</li><li><b>Коучингові запитання.</b> Замість готової відповіді питаю: «Що ти вже знаєш? З чого почнеш?» Учень сам шукає шлях, а я підказую лише тоді, коли він справді застряг.</li><li><b>Елементи гри.</b> Додаю в уроки ігрові завдання, щоб учням хотілося рухатися далі навіть у складній темі.</li><li><b>Кожен вчиться по-своєму.</b> Під час планування враховую, як працює увага й пам’ять дитини: комусь потрібна схема, комусь дослід, комусь пояснення вголос.</li></ul><p class="stage">Які компетентності вчителя я розвивала</p><ul class="comp"><li><b>Оцінювально-аналітична.</b> Оцінювала анкети за критеріями й училася бачити реальний результат за гарним описом.</li><li><b>Предметно-методична.</b> Добираю метод під мету уроку з фізики чи математики, а не навпаки.</li><li><b>Психологічна.</b> Через коучингові запитання підтримую самостійність учня і його віру у свої сили.</li><li><b>Інклюзивна.</b> Враховую, що діти мають різні потреби й темп навчання.</li><li><b>Інноваційна.</b> На онлайн-уроці постійно змінюю форми роботи, щоб діти не лише слухали вчителя, а <span class="hl">якнайбільше практикували</span>: вікторина в Kahoot, розв’язування на дошці, робота в групах, вправи, хмаринка слів, відповіді в чаті.</li><li><b>Інформаційно-цифрова.</b> Добираю цифрові інструменти так, щоб кожен учень міг надолужувати пропущене у своєму темпі.</li><li><b>Рефлексивна.</b> Аналізую свої уроки й змінюю те, що не спрацювало.</li></ul></div>',
+  sats:[{p:'регіональний осередок · Дніпро'},{m:'pod',cert:1}],offs:[-25,25]},
+ {id:'osv',angle:45,color:'--c-osv',t:['«Освічена','ініціатива»'],sub:'курси й сертифікати',sym:'✓',
+  date:['05','2025'],titleA:'',titleB:'«Освічена ініціатива»',
+  info:'онлайн-зустріч 29.05.2025 · сертифікат ЮНІСЕФ 23.05.2025 · сертифікат «Зрозуміло!» 27.05.2025',
+  chain:[['учасники «Освіченої ініціативи»','ЮНІСЕФ через платформу Agora','онлайн-платформа «Зрозуміло!», Фонд Східна Європа'],['запобігання сексуальній експлуатації та сексуальному насильству (PSEA)','інклюзивна гуманітарна допомога: 0,2 ЄКТС, 6 годин'],['безпечне спілкування з учнями','інклюзивний підхід на уроках'],['безпечне й доброзичливе середовище ліцею']],
+  sats:[{m:'meet'},{m:'unicef',cert:1},{m:'zroz',cert:1},{p:'ЮНІСЕФ · Agora'}],offs:[-70,-35,0,35]},
+ {id:'poruch',angle:135,color:'--c-por',t:['«Поруч»'],sub:'підтримка освітян',sym:'≈',
+  date:['01','2025'],titleA:'«Поруч»: ',titleB:'група психологічної підтримки для освітян',
+  info:'6 зустрічей по 1,5 години · ПН і ЧТ о 16:00 · Zoom · Telegram-канал групи',
+  chain:[['група психологічної підтримки «Поруч»','колеги-освітяни з різних шкіл'],['корисні матеріали та техніки із занять','обмін досвідом і спілкування'],['техніки підтримки в роботі з учнями'],['спокійна, підтримувальна атмосфера в класі']],
+  sats:[{m:'p_1'},{m:'p_gr'},{m:'p_met'},{m:'p_kan'}],offs:[-35,0,35,70]}
+];
+var byId={};I.forEach(function(x){byId[x.id]=x});
+/* SVG: карта у стилі «гілки дерева» — товсті кольорові гілки від ліцею, на кінці кожної табличка з назвою, від таблички тонші гілочки до полароїдів */
+var NS='http://www.w3.org/2000/svg',svg=document.getElementById('map');
+var CX=700,CY=560;
+function el(n,a,p){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+function cv(c){return 'var('+c+')'}
+function bez(p0,p1,p2,p3,t){var u=1-t;return[u*u*u*p0[0]+3*u*u*t*p1[0]+3*u*t*t*p2[0]+t*t*t*p3[0],u*u*u*p0[1]+3*u*u*t*p1[1]+3*u*t*t*p2[1]+t*t*t*p3[1]]}
+/* гілка, що звужується: заповнена форма вздовж кривої Безьє */
+function taper(p0,p3,w0,w1,bend){
+ var dx=p3[0]-p0[0],dy=p3[1]-p0[1],nx=-dy,ny=dx;
+ var p1=[p0[0]+dx*.33+nx*bend,p0[1]+dy*.33+ny*bend],p2=[p0[0]+dx*.66+nx*bend*.6,p0[1]+dy*.66+ny*bend*.6];
+ var L=[],Rr=[],N=28;
+ for(var i=0;i<=N;i++){var t=i/N,a=bez(p0,p1,p2,p3,t),b=bez(p0,p1,p2,p3,Math.min(1,t+.01)),c=bez(p0,p1,p2,p3,Math.max(0,t-.01));
+  var tx=b[0]-c[0],ty=b[1]-c[1],l=Math.hypot(tx,ty)||1,w=(w0+(w1-w0)*t)/2;
+  L.push([a[0]-ty/l*w,a[1]+tx/l*w]);Rr.push([a[0]+ty/l*w,a[1]-tx/l*w])}
+ var d='M'+L.map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L');
+ d+=' L'+Rr.reverse().map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join(' L')+'Z';return d}
+var defs=el('defs',{},svg);
+var sh=el('filter',{id:'sh',x:'-20%',y:'-20%',width:'140%',height:'150%'},defs);el('feDropShadow',{dx:0,dy:6,stdDeviation:6,'flood-color':'#7a3a10','flood-opacity':.25},sh);
+
+[['F = ma',1330,480,-8],['E = mc²',1330,560,6],['a² + b² = c²',700,1080,0],['v = s / t',90,1060,-5],['∫ досвід dt',1320,1060,-4]].forEach(function(f){
+ var t=el('text',{class:'doodle',x:f[1],y:f[2],'text-anchor':'middle',transform:'rotate('+f[3]+' '+f[1]+' '+f[2]+')'},svg);t.textContent=f[0]});
+var gB=el('g',{},svg),gP=el('g',{},svg),gT=el('g',{},svg),gC=el('g',{},svg);
+
+/* розкладка: кінець гілки (табличка) і полароїди */
+var LAY={
+ edcamp:{E:[420,330],bend:.12,ph:[['e_org',80,-80,-4],['sila',250,-85,4],['cover',420,-80,-3],['e_robo',590,-70,3],['v_ed',95,110,4],['e_sertse',275,120,-3],['e_robot',85,295,-3],['e_ekskurs',85,475,3]]},
+ gtp:{E:[980,330],bend:-.12,ph:[['g_ekran',810,-70,-4],['g_razom',985,-80,3],['ank',1155,-85,-3],['g_robota',1320,-80,4],['g_sup',1125,115,-2],['pod',1320,110,4],['g_stil',1300,295,-4]]},
+ osv:{E:[980,790],bend:.12,ph:[['meet',1250,700,5],['unicef',1200,960,-4],['zroz',960,1010,3]]},
+ poruch:{E:[420,790],bend:-.12,ph:[['p_kan',150,660,-5],['p_met',140,920,4],['p_gr',360,1010,-3],['p_1',590,960,5]]}
+};
+byId.gtp.sats=null;
+
+function polaroid(k,x,y,rot,col,parent){
+ var m=M[k],g=el('g',{class:'pol',transform:'translate('+x+' '+y+') rotate('+rot+')',tabindex:0,role:'button','data-m':k,'data-acc':col,'aria-label':'Переглянути: '+m.lbl},parent);
+ var w=136,h=150,iw=120,ih=104,cid='pc_'+k;
+ var cp=el('clipPath',{id:cid},defs);el('rect',{x:-iw/2,y:-h/2+8,width:iw,height:ih,rx:3},cp);
+ el('rect',{class:'pol-paper',x:-w/2,y:-h/2,width:w,height:h,rx:5,filter:'url(#sh)'},g);
+ el('image',{href:m.img,x:-iw/2,y:-h/2+8,width:iw,height:ih,preserveAspectRatio:m.cert?'xMidYMid meet':'xMidYMid slice','clip-path':'url(#'+cid+')'},g);
+ el('rect',{x:-iw/2,y:-h/2+8,width:iw,height:ih,rx:3,fill:'none',stroke:'rgba(0,0,0,.08)'},g);
+ el('rect',{class:'tape',x:-24,y:-h/2-9,width:48,height:16,rx:2,transform:'rotate(-6)'},g);
+ if(m.video){el('circle',{cx:0,cy:-h/2+8+ih/2,r:20,fill:cv('--c-amb')},g);el('path',{d:'M-6 '+(-h/2+8+ih/2-10)+' l17 10 l-17 10z',fill:'#fff'},g)}
+ var t=el('text',{class:'pol-cap',x:0,y:h/2-12,'text-anchor':'middle'},g);t.textContent=m.lbl;
+ return g}
+
+I.forEach(function(d,idx){
+ var lay=LAY[d.id],E=lay.E,col=cv(d.color),start=[CX+(E[0]-CX)*.14,CY+(E[1]-CY)*.18];
+ /* головна гілка */
+ el('path',{class:'branch',d:taper(start,E,34,12,lay.bend),fill:col},gB);
+ /* гілочки до фото */
+ lay.ph.forEach(function(p,i){
+  el('path',{class:'twig2',d:taper(E,[p[1],p[2]],10,3,(i%2?.1:-.1)),fill:col},gB);
+  polaroid(p[0],p[1],p[2],p[3],d.color,gP)});
+ /* табличка з назвою */
+ var g=el('g',{class:'tag',tabindex:0,role:'button','data-id':d.id,'aria-label':(d.titleA+d.titleB)+': відкрити'},gT);
+ var name=d.t.join(' '),w=Math.max(220,name.length*12.5+80,d.sub.length*10.5+90),h=86;
+ el('rect',{class:'tag-bg',x:E[0]-w/2,y:E[1]-h/2,width:w,height:h,rx:22,fill:col,filter:'url(#sh)'},g);
+ el('rect',{x:E[0]-w/2+5,y:E[1]-h/2+5,width:w-10,height:h-10,rx:18,fill:'none',stroke:'rgba(255,255,255,.55)','stroke-width':1.5,'stroke-dasharray':'4 4'},g);
+ var t1=el('text',{class:'tag-t',x:E[0]+14,y:E[1]-4,'text-anchor':'middle'},g);t1.textContent=name;
+ var t2=el('text',{class:'tag-s',x:E[0]+14,y:E[1]+22,'text-anchor':'middle'},g);t2.textContent=d.sub;
+ el('circle',{cx:E[0]-w/2+28,cy:E[1],r:19,fill:'rgba(255,255,255,.95)'},g);
+ var sy=el('text',{class:'tag-sym',x:E[0]-w/2+28,y:E[1]+7,'text-anchor':'middle',style:'fill:'+col},g);sy.textContent=d.sym;
+ el('circle',{class:'more-dot',cx:E[0]+w/2-6,cy:E[1]-h/2+6,r:13},g);
+ var pl=el('text',{x:E[0]+w/2-6,y:E[1]-h/2+12,'text-anchor':'middle',class:'more-plus'},g);pl.textContent='+';
+});
+
+/* центр — ліцей */
+var cg=el('g',{class:'core'},gC);
+var RX=300,RY=148,ORX=350,ORY=180;
+[[0,'--c-ed',0],[7,'--c-amb',.33],[-7,'--c-gtp',.66]].forEach(function(o){var e=el('g',{transform:'rotate('+o[0]+' '+CX+' '+CY+')'},cg);
+ el('ellipse',{class:'orb',cx:CX,cy:CY,rx:ORX,ry:ORY},e);
+ var dot=el('circle',{r:8,fill:cv(o[1]),stroke:'#fff','stroke-width':2},e);
+ el('animateMotion',{dur:'16s',repeatCount:'indefinite',begin:(-16*o[2])+'s',path:'M'+(CX+ORX)+' '+CY+' a'+ORX+' '+ORY+' 0 1 1 '+(-2*ORX)+' 0 a'+ORX+' '+ORY+' 0 1 1 '+(2*ORX)+' 0'},dot)});
+/* фото ліцею в овалі */
+var lcp=el('clipPath',{id:'lyc'},defs);el('ellipse',{cx:CX,cy:CY,rx:RX,ry:RY},lcp);
+el('ellipse',{cx:CX,cy:CY,rx:RX+10,ry:RY+10,fill:'#FFFFFF',filter:'url(#sh)'},cg);
+el('image',{href:'a/lyceum.jpg',x:CX-RX,y:CY-RY,width:RX*2,height:RY*2,preserveAspectRatio:'xMidYMid slice','clip-path':'url(#lyc)'},cg);
+var lb=el('g',{},cg);el('rect',{x:CX-92,y:CY+RY+2,width:184,height:30,rx:15,fill:'var(--core)'},lb);
+var lt=el('text',{x:CX,y:CY+RY+22,'text-anchor':'middle',style:'font-size:13px;font-weight:800'},lb);lt.textContent='фізика · математика';
+
+/* вікна */
+var dlg=document.getElementById('dlg'),body=document.getElementById('dlgBody');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function btn(t,h,main){return '<a class="btn'+(main?' main':'')+'" href="'+h+'" target="_blank" rel="noopener">'+t+' '+ARROW+'</a>'}
+function head(date,a,b,info){return '<div class="d-head">'+(date?'<span class="d-date"><b>'+date[0]+'</b>'+date[1]+'</span>':'')+'<div class="d-title"><h2>'+esc(a)+'<em>'+esc(b)+'</em></h2>'+(info?'<span class="d-when">'+esc(info)+'</span>':'')+'</div><button class="x" type="button" data-close aria-label="Закрити">×</button></div>'}
+function chain(cols){return '<ol class="chain">'+cols.map(function(c,i){return '<li><h3><i>'+(i+1)+'</i>'+STEPS[i]+'</h3><ul>'+c.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></li>'}).join('')+'</ol>'}
+function show(acc,html,media){dlg.className=media?'media-d':'';dlg.style.setProperty('--accent',cv(acc));body.innerHTML=html;if(!dlg.open){if(dlg.showModal)dlg.showModal();else dlg.setAttribute('open','')}body.scrollTop=0}
+function openBranch(id){
+ var d=byId[id],h=head(d.date,d.titleA,d.titleB,d.info);
+ if(d.took)h+='<p class="take"><b>Взяла:</b> '+esc(d.took)+'</p>';
+ if(d.changed)h+='<p class="take t2"><b>Змінила:</b> '+(d.id==='gtp'?d.changed:esc(d.changed))+'</p>';
+ if(d.more)h+=d.more;
+ if(d.chain)h+=chain(d.chain);
+ show(d.color,h)}
+function openMedia(k,acc){var m=M[k];
+ show(acc||'--core','<div class="lb-media">'+(m.video?'<video controls playsinline autoplay preload="metadata" poster="'+m.img+'"><source src="'+m.video+'" type="video/mp4"></video>':'<img src="'+m.img+'" alt="'+esc(m.cap)+'">')+'</div><div class="lb-bar"><span class="lb-cap">'+esc(m.cap)+'</span><button class="x" type="button" data-close aria-label="Закрити">×</button></div>',true)}
+function close(){var v=body.querySelector('video');if(v)v.pause();if(dlg.close)dlg.close();else dlg.removeAttribute('open')}
+function act(e){var t=e.target.closest('[data-m],[data-id]');if(!t)return;if(t.dataset.m)openMedia(t.dataset.m,t.dataset.acc);else openBranch(t.dataset.id)}
+svg.addEventListener('click',act);
+svg.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();act(e)}});
+body.addEventListener('click',function(e){if(e.target.closest('[data-close]'))close()});
+dlg.addEventListener('click',function(e){if(e.target===dlg)close()});
+dlg.addEventListener('close',function(){var v=body.querySelector('video');if(v)v.pause()});
+var ms=document.getElementById('mapScroll');ms.scrollLeft=(ms.scrollWidth-ms.clientWidth)/2;
+
+/* рукописний напис */
+var rect=document.getElementById('revRect'),pen=document.getElementById('pen'),sw=document.getElementById('swoosh'),txt=document.getElementById('inkText');
+var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,raf=0;
+function write(){
+ cancelAnimationFrame(raf);var bb;try{bb=txt.getBBox()}catch(e){bb={x:120,width:760}}
+ var x0=bb.x-6,x1=bb.x+bb.width+8,swl=sw.getTotalLength();sw.style.strokeDasharray=swl;
+ if(reduce){rect.setAttribute('width',1000);sw.style.strokeDashoffset=0;return}
+ sw.style.strokeDashoffset=swl;var T=3600,T2=700,t0=null;
+ function f(ts){if(!t0)t0=ts;var t=ts-t0,k=Math.min(t/T,1),e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2,x=x0+(x1-x0)*e;
+  rect.setAttribute('width',Math.max(0,x));var wob=Math.sin(t/38)*16+Math.sin(t/91)*9;
+  if(k<1)pen.setAttribute('transform','translate('+x.toFixed(1)+','+(102+wob).toFixed(1)+')');
+  else{var k2=Math.min((t-T)/T2,1);sw.style.strokeDashoffset=swl*(1-k2);var sp=sw.getPointAtLength(swl*k2);pen.setAttribute('transform','translate('+sp.x.toFixed(1)+','+sp.y.toFixed(1)+')');
+   if(k2>=1){pen.setAttribute('transform','translate(870,144)');return}}
+  raf=requestAnimationFrame(f)}
+ raf=requestAnimationFrame(f)}
+if(document.fonts&&document.fonts.load){Promise.race([document.fonts.load('118px "Marck Script"'),new Promise(function(r){setTimeout(r,1500)})]).then(write)}else write();
+document.getElementById('titleSvg').addEventListener('click',write);
+})();
+</script>
+
+</body></html>
